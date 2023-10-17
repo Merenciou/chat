@@ -43,7 +43,7 @@ class _ChatPage extends State<ChatPage> {
                     child: ElevatedButton(
                       onPressed: null,
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.lightBlue,
+                        backgroundColor: Colors.lightBlue,
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 5),
                         shape: RoundedRectangleBorder(
@@ -55,7 +55,7 @@ class _ChatPage extends State<ChatPage> {
                   ),
                   Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('Usuário',
+                      child: Text('Fulano de Tal',
                           style: GoogleFonts.roboto(
                               textStyle: const TextStyle(fontSize: 22)))),
                 ],
@@ -74,73 +74,84 @@ class _ChatPage extends State<ChatPage> {
                       shrinkWrap: true,
                       itemCount: message.length,
                       itemBuilder: (context, index) {
-                        return Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10.0,
-                              horizontal: 10.10,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Flexible(
-                                      child: Container(
-                                        height: 30,
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 10.10,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Expanded(
+                                    child: LayoutBuilder(builder:
+                                        (BuildContext context,
+                                            BoxConstraints constraints) {
+                                      return Container(
+                                        width: constraints.maxWidth,
                                         margin: const EdgeInsets.symmetric(
                                           vertical: 10,
                                         ),
                                         decoration: const BoxDecoration(
-                                            color: Colors.blueAccent,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15))),
+                                          color: Colors.blueAccent,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(15),
+                                          ),
+                                        ),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
                                             Expanded(
-                                              child: Text(
-                                                message[index],
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.roboto(
-                                                  textStyle: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 4),
+                                                child: Text(
+                                                  message[index],
+                                                  textAlign: TextAlign.center,
+                                                  style: GoogleFonts.roboto(
+                                                    textStyle: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w300),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ],
                                         ),
-                                      ),
+                                      );
+                                    }),
+                                  ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    child: Icon(
+                                      Icons.check_rounded,
+                                      size: 15,
                                     ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      child: Icon(
-                                        Icons.check_rounded,
-                                        size: 15,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 36,
-                                      width: 36,
-                                      decoration: const BoxDecoration(
-                                          color: Colors.blueAccent,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: const Icon(Icons.person),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  myDateTime,
-                                  style: const TextStyle(fontSize: 10),
-                                ),
-                              ],
-                            ),
+                                  ),
+                                  Container(
+                                    height: 36,
+                                    width: 36,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.blueAccent,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: const Icon(Icons.person),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                myDateTime,
+                                style: const TextStyle(fontSize: 10),
+                              ),
+                            ],
                           ),
                         );
                       },
